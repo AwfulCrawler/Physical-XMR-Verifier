@@ -37,7 +37,7 @@ See [LICENSE](LICENSE).
         certificate_verifier <certificate filename>
 
     You must be running `monerod` for `certificate_verifier` to check that the outputs exist and to check their spent status.  Example certificates, produced for testnet wallets,
-    can be found in the `test_certificates` subdirectory.  There should only be one certificate in the file specified by <certificate filename>.
+    can be found in the `test_certificates` subdirectory.  There should only be one certificate in the file specified by `certificate filename`.
 
 * `sample_certificate` produces a sample certificate (for testing purposes) using the wallet specified by wallet-name.  Wallet.keys file and Wallet file must be present.
 
