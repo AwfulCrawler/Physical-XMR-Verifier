@@ -1,0 +1,3 @@
+Some sample testnet certificates to test the certificate_verifier.
+
+Use 'make testnet' and have a locall daemon running testnet to try them out and see the various types of errors. 

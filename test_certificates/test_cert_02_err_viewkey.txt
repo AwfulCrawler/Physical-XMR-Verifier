@@ -1,0 +1,19 @@
+HASH:<8d2db439b5d18eeb2ebbc564f30898833989a746815a1c2edfdb143aff7d5dfa>
+
+--------------------------------------------------START-----------------------------------------------------
+XMR PHYSICAL COIN CERTIFICATE
+
+XMR ADDRESS: 9uNMjn3wUeUVGHspwdkEEPSLtqcUjeb9AUAcqwZX3GppPVcpUCV1fqM1oL3FP6H7AvLcLoBFFosLje8a9ucnbihF749cL69
+
+VIEW KEY: c7a139e0539e2ab5d57e092de93a46872a49e9f27b91146a9c2cc5c6bfd5ef0a
+Total # of outputs:1
+*************************************INDIVIDUAL OUTPUT INFORMATION******************************************
+key_image: ........6e08fffd369e7aa68ff1cedb660193cd017b5473c85d1997cbb96ce5a2584dda
+tx_id: ............ad3039a882daca308d426d87533fc7f749ba8b66c8dea7dd69d9d1f56479224a
+output_public_key: 1c0975e48bc6cf4783b25c07c1f40452c99c5215d71dbe3c9259c360bd9f7345
+xmr_amount: .......25.000000000000
+
+---------------------------------------------------END------------------------------------------------------
+
+SIGNATURES:
+<eae536555bb2914f900275393af2407207e5716db5d041633a524d5fb40010002c3ebdc6012cb032d5d9cc5fc8dfb7f4ddb89c4e60303807168e3c8c63f0510f>
