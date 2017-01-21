@@ -78,18 +78,16 @@ void dc_check_hash(std::ifstream& f, const crypto::hash& hash)
   crypto::hash      message_hash;
 
   do { if(!getline(f, line)) { throw std::runtime_error("missing START of message in digital certificate"); } } while (line.find("-START-") == std::string::npos);
+  message << line << "\n";
 
   do
   {
     if (!getline(f,line))
       throw std::runtime_error("file ended before message end");
 
-    if (line.find("-END-") == std::string::npos)
-      message << line << "\n";
-    else
-      break;
+    message << line << "\n";
   }
-  while(true);
+  while(line.find("-END-") == std::string::npos);
 
   //Reset the fstream back to the beginning of the file.
   f.seekg(0);
@@ -100,7 +98,8 @@ void dc_check_hash(std::ifstream& f, const crypto::hash& hash)
 
   //Need to replace with the hash that smoothie uses.
   //
-  sha256(message.str(), &reinterpret_cast<unsigned char &>(message_hash)); //Has been tested against command-line sha256sum
+  crypto::cn_fast_hash(message.str().data(), message.str().size(), message_hash);
+  //sha256(message.str(), &reinterpret_cast<unsigned char &>(message_hash)); //Has been tested against command-line sha256sum
   if (message_hash != hash)
   {
     message_writer(epee::log_space::console_color_yellow, true) << "WARNING: hash of message does not match hash on certificate:\n"

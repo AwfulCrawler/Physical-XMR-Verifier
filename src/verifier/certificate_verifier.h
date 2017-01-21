@@ -54,7 +54,6 @@
 #include "cryptonote_config.h"
 
 #include "testnet.h"
-#include "sha256.h"
 #include "message_writer.h"
 
 #define RPC_CONNECTION_TIMEOUT 200000

@@ -41,7 +41,6 @@
 
 #include "message_writer.h"
 #include "extended_wallet.h"
-#include "sha256.h"
 #include "testnet.h"
 
 
@@ -104,6 +103,7 @@ void make_digital_certificate(const std::vector<std::string>& args)
   //std::vector<std::tuple<crypto::hash, crypto::public_key, crypto::key_image, uint64_t, crypto::signature>> ski = m_wallet.export_key_images_extended();
   std::vector<tools::signed_output_details> ski = m_wallet.export_key_images_extended();
   std::stringstream message {};
+  message << "--------------------------------------------------START-----------------------------------------------------" << std::endl;
   message << "XMR PHYSICAL COIN CERTIFICATE" << std::endl << std::endl;
   message << "XMR ADDRESS: " <<  m_wallet.get_account().get_public_address_str(m_wallet.testnet()) << std::endl << std::endl;
   message << "VIEW KEY: " << epee::string_tools::pod_to_hex(m_wallet.get_account().get_keys().m_view_secret_key) << std::endl;
@@ -117,25 +117,15 @@ void make_digital_certificate(const std::vector<std::string>& args)
     message << "output_public_key: " << epee::string_tools::pod_to_hex(x.public_key) << std::endl;
     message << "xmr_amount: ......." << cryptonote::print_money(x.amount) << std::endl << std::endl;
   }
-  //message << "-------------------------------------------END-------------------------------------------" << std::endl;
+  message << "---------------------------------------------------END------------------------------------------------------" << std::endl;
 
   std::string message_str = message.str();
   crypto::hash hash;
-  //crypto::cn_fast_hash(message_str.data(), message_str.size(), hash);
-  sha256(message_str, &reinterpret_cast<unsigned char &>(hash));
-  //Seems to match sha256sum (in terminal) when sha256sum is run on message_str minus the final std::endl :/
-  //
-  //gedit appears not to show the final end line if no character follows it, and appears to insert a final endline
-  //before the end of the file when saving a text-file.
-  //
-  //verifying the hash manually with other editors might require playing around with including / excluding an empty line
-  //in order to get the correct hash.
+  crypto::cn_fast_hash(message_str.data(), message_str.size(), hash);
 
   std::stringstream certificate;
   certificate << "HASH:<" << epee::string_tools::pod_to_hex(hash) << ">" << std::endl << std::endl;
-  certificate << "--------------------------------------------------START-----------------------------------------------------" << std::endl;
-  certificate << message_str;
-  certificate << "---------------------------------------------------END------------------------------------------------------" << std::endl << std::endl;
+  certificate << message_str << std::endl;
 
   ski = m_wallet.export_key_images_extended(hash);
   certificate << "SIGNATURES:" << std::endl;
