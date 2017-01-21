@@ -6,7 +6,7 @@
 For use with digital certificates for monero physical coins (specifically Lealana physical coins).
 A monero daemon must be running locally to check the outputs and their spent status, but signatures can be checked without a daemon running.
 
-* Checks the hash of the message against the hash on the certificate (sha256), and gives a warning if they do not match.
+* Checks the hash of the message against the hash on the certificate (keccak-256), and gives a warning if they do not match.
 * Checks signatures
 * Checks output info exists on blockchain and belongs to the address/viewkey in the certificates
 * Checks spent status of all outputs on the certificate
